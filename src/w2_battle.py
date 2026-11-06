@@ -64,7 +64,7 @@ def make(frames, hits):
         flash.setdefault(int(t * FPS), []).append((gx, gy))
 
     def draw(ctx, fi):
-        fr = frames[fi]
+        fr = frames[min(fi, NF - 61)]
         ctx.set_source_rgb(0.06, 0.03, 0.12); ctx.paint()
         g = fr["grid"]
         pink_n = int((g == 0).sum()); lime_n = GN * GN - pink_n
@@ -75,7 +75,7 @@ def make(frames, hits):
                 ctx.set_source_rgb(*c)
                 ctx.rectangle(GX0 + x * TS + 1.5, GY0 + y * TS + 1.5, TS - 3, TS - 3); ctx.fill()
         for k in range(4):
-            for (gx, gy) in flash.get(fi - k, []):
+            for (gx, gy) in (flash.get(fi - k, []) if fi < NF - 60 else []):
                 ctx.set_source_rgba(1, 1, 1, 0.7 * (1 - k / 4))
                 ctx.rectangle(GX0 + gx * TS, GY0 + gy * TS, TS, TS); ctx.fill()
         for team, p in fr["balls"]:
@@ -96,9 +96,9 @@ def make(frames, hits):
         label(ctx, "WHO OWNS MORE AT THE END?", W / 2, 390, 48, col=grad(0.0))
         if fi > NF - 60:
             a = min(1, (fi - NF + 60) / 12)
-            win = "PINK WINS" if pink_n > lime_n else "LIME WINS"
+            win = "PINK WINS" if pink_n > lime_n else ("LIME WINS" if lime_n > pink_n else "IT'S A TIE!")
             ctx.set_source_rgba(0.06, 0.03, 0.12, 0.75 * a); ctx.rectangle(0, 860, W, 260); ctx.fill()
-            label(ctx, win, W / 2, 1030, 130, col=PINK if pink_n > lime_n else LIME, alpha=a)
+            label(ctx, win, W / 2, 1030, 130, col=PINK if pink_n > lime_n else (LIME if lime_n > pink_n else (1, 1, 1)), alpha=a)
     return draw
 
 
@@ -106,7 +106,11 @@ def audio(hits, path):
     tr = Track(DUR)
     music(tr, DUR, bpm=124, seed=8, vol=0.5, base=220)
     for (t, team, gx, gy) in hits:
+        if t > (NF - 61) / FPS:
+            continue
         tr.add(pluck(note(gy % 10 + (0 if team == 0 else 3), 392 if team == 0 else 330), 0.18, 0.06, 16), t)
+    for j, st in enumerate([0, 4, 7, 12]):
+        tr.add(pluck(note(st + 5, 261.63), 1.4, 0.16, 3), (NF - 60) / FPS + j * 0.05)
     tr.save(path, DUR)
 
 
