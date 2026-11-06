@@ -4,6 +4,7 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 22:00 Asia/Tashkent, published through Metricool (brand blogId `7526089`, YouTube connected).
 
 ## Direction (from Ali, 2026-11-07)
+- The whole channel must feel like ASMR: calm, smooth, satisfying pacing; soft pleasant sounds (gentle plucks, soft clicks, light chimes, airy whooshes), no harsh booms or loud beats; slow eases, no jarring cuts. Keep the music bed quiet and soft (low `vol`), let the satisfying sound effects lead.
 - Ali found pure abstract/math animations (ball grows, sunflower angle, 1/2+1/4, cardioid, Monty Hall, color battle) too shallow or unclear. Do NOT make more of those.
 - Make FUN-FACT videos from many sciences (space, biology, history, chemistry, geography, physics, human body…): one surprising, verified fact, told as a story — hook question → build-up → big reveal → "why"/bonus line → comment prompt. 20–33 s.
 - Use `src/story.py` helpers (rich text highlights, progress bar, ding/whoosh/boom sounds). See `src/f1_earthday.py` … `src/f6_history.py` as reference quality.
