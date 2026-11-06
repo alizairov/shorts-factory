@@ -3,6 +3,12 @@
 Goal: a monetizable English YouTube Shorts channel of code-animated videos. One Short per day at
 22:00 Asia/Tashkent, published through Metricool (brand blogId `7526089`, YouTube connected).
 
+## Direction (from Ali, 2026-11-07)
+- Ali found pure abstract/math animations (ball grows, sunflower angle, 1/2+1/4, cardioid, Monty Hall, color battle) too shallow or unclear. Do NOT make more of those.
+- Make FUN-FACT videos from many sciences (space, biology, history, chemistry, geography, physics, human body…): one surprising, verified fact, told as a story — hook question → build-up → big reveal → "why"/bonus line → comment prompt. 20–33 s.
+- Use `src/story.py` helpers (rich text highlights, progress bar, ding/whoosh/boom sounds). See `src/f1_earthday.py` … `src/f6_history.py` as reference quality.
+- Every frame must be readable on a phone: big text, high contrast, one idea on screen at a time; content visible from the very first frame.
+
 ## Rules (YouTube "inauthentic content" policy — keep the channel monetizable)
 - Every video is a NEW idea/mechanic. Never re-upload a previous video with only colors/speed changed.
 - Rotate formats: Satisfying (physics/math art, little or no text) · Educational (one clear idea, big English text) · Comparison (A vs B, sizes, speeds, numbers).
@@ -35,9 +41,13 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 - Week 1: ball escapes rotating rings · 28-ball orbit loop · color-sorting plinko · planet sizes to scale · π by rolling a circle · bubble vs quick sort race · ball grows every bounce
 - Week 2: pink vs lime territory battle · 1/2+1/4+… = 1 · thousand/million/billion/trillion seconds · double-pendulum chaos · times tables on a circle (cardioid) · Monty Hall 1000 games · golden angle sunflower
 
+- Facts 1: Earth history in 24h · atoms in a glass vs oceans · sharks older than trees · light travel times (you never see the present) · Cleopatra/mammoths/Oxford timelines · Venus day longer than year
+- Pulled (unscheduled, don't reuse): ball grows every bounce · golden angle sunflower · 1/2+1/4+… · cardioid · Monty Hall · pink vs lime battle
+
 ## Idea backlog
-Spiral domino · marble race through rotating gates · ball in a shrinking square · Maurer rose string art · hexagon wall breaker ·
-fireworks loop · Pythagoras visual proof · why bees build hexagons · rice on a chessboard (exponential growth) · binary counting with lights ·
-tallest buildings to scale · star sizes (Sun vs Betelgeuse) · speed of sound vs light vs bullet · animal lifespans ·
-merge vs heap vs insertion sort · Fourier circles drawing a shape · random walk vs drunkard · prime number spiral (Ulam) ·
-Galton board vs coin flips · ocean depth to scale · how big is a mole of atoms · light travel time to planets
+Fun-fact ideas (verify each before using): octopus has 3 hearts & blue blood · your body's DNA stretched out (Earth–Sun trips) ·
+a neutron star teaspoon weight · Mariana Trench vs Everest to scale · bananas are berries, strawberries aren't · honey that never spoils (Egyptian tombs) ·
+how many times Earth fits in the Sun / Sun in UY Scuti-class stars · speed of sound vs light vs bullet · tardigrades surviving space ·
+the human brain's power use vs a light bulb · how long a day was when dinosaurs lived (Moon moving away) · Saturn would float in water ·
+lightning hotter than the Sun's surface · trees talking through fungal networks · Russia has more surface area than Pluto ·
+how fast Earth really moves (spin + orbit + galaxy) · rice on a chessboard (exponential growth) · cows have best friends?? (verify)
