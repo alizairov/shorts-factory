@@ -10,6 +10,10 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 - Use `src/story.py` helpers (rich text highlights, progress bar, ding/whoosh/boom sounds). See `src/f1_earthday.py` … `src/f6_history.py` as reference quality.
 - Every frame must be readable on a phone: big text, high contrast, one idea on screen at a time; content visible from the very first frame.
 
+## Lessons from analytics
+- "What π actually is" (first 6.5 h): 909 views, 92.8% from Shorts feed, avg view duration 0:16 of 0:18, but only 35.2% "stayed to watch" (64.8% swiped away). People who stay watch almost to the end; the FIRST 1–2 SECONDS lose most viewers.
+- Hook rules: motion on frame 1 (no static intro, no fade-in); the question/hook text is on screen from frame 1; the main action starts within 0.5 s; keep 12–20 s; end in a way that loops back to the start.
+
 ## Rules (YouTube "inauthentic content" policy — keep the channel monetizable)
 - Every video is a NEW idea/mechanic. Never re-upload a previous video with only colors/speed changed.
 - Rotate formats: Satisfying (physics/math art, little or no text) · Educational (one clear idea, big English text) · Comparison (A vs B, sizes, speeds, numbers).
