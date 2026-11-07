@@ -113,12 +113,6 @@ def draw(ctx, fi):
     ctx.save(); ctx.translate(540, lerp(1000, 1350, z)); ctx.scale(zoom, zoom); ctx.translate(-fx, -fy)
     scene(ctx, t)
     ctx.restore()
-    # little character watching from the bottom-right corner
-    ca = 1 - z
-    if ca > 0.02:
-        ctx.push_group(); ctx.translate(870, 1440); ctx.scale(0.36, 0.36); ctx.translate(-540, -640)
-        K.character(ctx, t, 0)
-        ctx.identity_matrix(); ctx.pop_group_to_source(); ctx.paint_with_alpha(ca)
     ma = cl((t - 8.6) / 0.25) * (1 - cl((t - 12.0) / 0.3))
     if ma > 0.01:
         mx, my, R = 540, 760, 270

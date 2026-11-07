@@ -39,6 +39,24 @@ def organ(ctx, x, y, t, xray):
 K.ORGAN = organ
 
 
+def silhouette(ctx, t, xray):
+    # faceless human outline — no character, just a body map with the beating heart
+    a = 1 - 0.75 * xray
+    ctx.push_group()
+    ctx.set_source_rgba(1, 1, 1, 0.22)
+    ell(ctx, 540, 640, 170, 190); ctx.fill()
+    rrect(ctx, 470, 800, 140, 90, 30); ctx.fill()
+    rrect(ctx, 330, 860, 420, 600, 150); ctx.fill()
+    for sd in (-1, 1):
+        rrect(ctx, 540 + sd * 255 - 55, 900, 110, 520, 55); ctx.fill()
+        rrect(ctx, 540 + sd * 90 - 70, 1380, 140, 560, 65); ctx.fill()
+    ctx.pop_group_to_source(); ctx.paint_with_alpha(a)
+    ctx.set_source_rgba(1, 1, 1, 0.5 * a); ctx.set_line_width(6)
+    ell(ctx, 540, 640, 170, 190); ctx.stroke()
+    rrect(ctx, 330, 860, 420, 600, 150); ctx.stroke()
+    organ(ctx, K.STOM[0], K.STOM[1], t, 0.6 + 0.4 * xray)
+
+
 def valve_view(ctx, cx, cy, R, t):
     ctx.set_source_rgb(0.30, 0.06, 0.18); ctx.paint()
     # vessel walls
@@ -97,7 +115,7 @@ def draw(ctx, fi):
     zoom = 1 + 3.4 * z
     fx, fy = lerp(540, K.STOM[0], z), lerp(1000, K.STOM[1], z)
     ctx.save(); ctx.translate(540, lerp(1000, 1500, z)); ctx.scale(zoom, zoom); ctx.translate(-fx, -fy)
-    K.character(ctx, t, z)
+    silhouette(ctx, t, z)
     ctx.restore()
     ma = cl((t - 5.0) / 0.25) * (1 - cl((t - 12.2) / 0.3))
     if ma > 0.01:

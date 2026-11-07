@@ -84,3 +84,6 @@ how many times Earth fits in the Sun / Sun in UY Scuti-class stars · speed of s
 the human brain's power use vs a light bulb · how long a day was when dinosaurs lived (Moon moving away) · Saturn would float in water ·
 lightning hotter than the Sun's surface · trees talking through fungal networks · Russia has more surface area than Pluto ·
 how fast Earth really moves (spin + orbit + galaxy) · rice on a chessboard (exponential growth) · cows have best friends?? (verify)
+
+## No characters (Ali, 2026-11-07)
+- Do NOT use a hero/character in videos. For body topics use a faceless body silhouette only.
