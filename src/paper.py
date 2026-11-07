@@ -31,7 +31,7 @@ def make_texture(w, h, seed):
     return surf, a
 
 
-TEX, _keep = make_texture(W, H, 7)
+TEX, _keep = make_texture(W + 256, H + 256, 7)
 
 
 def rough_poly(pts, amp=2.2, seed=0, step=18):
@@ -72,6 +72,7 @@ def paper(ctx, pts, col, seed=0, shadow=(7, 9), sh_a=0.28, rough=2.0):
         path(ctx, p); ctx.set_source_rgba(0.12, 0.08, 0.05, a); ctx.fill(); ctx.restore()
     path(ctx, p); ctx.set_source_rgb(*col); ctx.fill_preserve()
     ctx.save(); ctx.clip()
+    ctx.identity_matrix()   # texture in device space so transformed shapes are fully covered
     ctx.set_operator(cairo.OPERATOR_MULTIPLY)
     ctx.set_source_surface(TEX, (seed * 37) % 200 - 200, (seed * 53) % 200 - 200)
     ctx.paint()
