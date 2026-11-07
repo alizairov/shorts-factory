@@ -24,6 +24,14 @@ We CANNOT do: photos, realistic humans or faces, real celebrities or public figu
 5. **End with a loop or a closing line** (≤4 words, e.g. "NATURE IS WEIRD.") — the last frame should flow back into the first.
 6. Prefer facts where a viewer can **guess first** ("Which planet floats?", "Is it a berry?") — it drives comments.
 
+## ⭐ Preferred format: "Show it by drawing" (the owner's favourite)
+Our best videos (π by rolling a circle, triangle angles = 180°) prove ONE simple fact by a visual action, with almost no words:
+- Pick a fact that can be **shown**, not told: something is cut, rolled, poured, folded, stacked, unrolled, compared side by side, and the result reveals the answer.
+- Structure (12–18 s): **question strip (≤3 words)** → **the drawing does the action** (cut/move/roll/fill, 3–6 s) → **result appears as a big number or shape** (e.g. "180°", "3.14") → **shape changes / repeats with a new example** to show it always works → **loop**.
+- Text: max 3 short strips in the whole video (e.g. "WHY 180°?" … "ANY TRIANGLE." "ALWAYS 180°."). Numbers on the drawing itself are fine.
+- Storyboard must describe concrete drawing actions (what moves where), not narration.
+- Good themes: maths/geometry proofs, physics you can see (why ice floats, why the Moon has phases), scale by stacking/filling, nature patterns. Aim for ~half of all scripts in this format.
+
 ## Accuracy rules
 - Only facts that are well established. Give 2 reputable sources (NASA, NOAA, Britannica, National Geographic, Smithsonian, university or museum sites, peer-reviewed journals). No Reddit, no fact-listicle sites.
 - No myths (e.g. "we use 10% of our brain", "goldfish 3-second memory", "Great Wall visible from space"). If a popular fact is debated, skip it or phrase it carefully ("scientists think…").
@@ -34,7 +42,7 @@ We CANNOT do: photos, realistic humans or faces, real celebrities or public figu
 - Family-friendly, no medical/financial advice, no politics, no religion debates, no violence.
 
 ## Already made — do NOT repeat these topics
-Planet sizes to scale · π by rolling a circle · bubble vs quick sort · ball escapes rings · orbit loop · colour plinko · how long is a billion seconds · double-pendulum chaos · Earth's history in 24 hours · atoms in a glass of water vs oceans · sharks older than trees · light travel time (you never see the present) · Cleopatra/mammoths/Oxford timelines · Venus day longer than year · octopus 3 hearts & blue blood · Saturn would float · banana is a berry, strawberry isn't · wombats poop cubes.
+Planet sizes to scale · π by rolling a circle · bubble vs quick sort · ball escapes rings · orbit loop · colour plinko · how long is a billion seconds · double-pendulum chaos · Earth's history in 24 hours · atoms in a glass of water vs oceans · sharks older than trees · light travel time (you never see the present) · Cleopatra/mammoths/Oxford timelines · Venus day longer than year · octopus 3 hearts & blue blood · Saturn would float · triangle angles = 180° (tear off corners) · banana is a berry, strawberry isn't · wombats poop cubes.
 (The owner will append new finished topics to this list.)
 
 ## Where to write — directly into the Google Sheet
