@@ -64,6 +64,9 @@ def path(ctx, pts):
     ctx.close_path()
 
 
+TEX_A = 1.0
+
+
 def paper(ctx, pts, col, seed=0, shadow=(7, 9), sh_a=0.28, rough=2.0):
     p = rough_poly(pts, rough, seed) if rough else pts
     # layered soft-ish drop shadow
@@ -75,7 +78,7 @@ def paper(ctx, pts, col, seed=0, shadow=(7, 9), sh_a=0.28, rough=2.0):
     ctx.identity_matrix()   # texture in device space so transformed shapes are fully covered
     ctx.set_operator(cairo.OPERATOR_MULTIPLY)
     ctx.set_source_surface(TEX, (seed * 37) % 200 - 200, (seed * 53) % 200 - 200)
-    ctx.paint()
+    ctx.paint_with_alpha(TEX_A)
     ctx.restore()
     ctx.new_path()
 

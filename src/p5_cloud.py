@@ -4,11 +4,28 @@ import numpy as np, cairo
 from common import W, H, FPS, encode, stills, Track, pluck, note, SR, mux
 from paper import paper, pin, rect_pts, ellipse_pts, path
 from paperkit import *
+import paper as _pp, paperkit as _pk
+_pp.TEX_A = 0.45; _pk.BG_TEX_A = 0.35
+from PIL import Image as _Im
+_lg = _Im.open('/home/claude/shorts-factory/branding/channel_logo.png').convert('RGBA').resize((120, 120), _Im.LANCZOS)
+_m = _Im.new('L', (120, 120), 0)
+from PIL import ImageDraw as _D; _D.Draw(_m).ellipse((0, 0, 119, 119), fill=255); _lg.putalpha(_m)
+_a = np.array(_lg); _a = _a[:, :, [2, 1, 0, 3]].copy(); _a[:, :, :3] = (_a[:, :, :3].astype(int) * _a[:, :, 3:4] // 255).astype(np.uint8)
+LOGO = cairo.ImageSurface.create_for_data(memoryview(_a), cairo.FORMAT_ARGB32, 120, 120)
+
+
+def brand(ctx):
+    x, y = 70, 120
+    ctx.set_source_rgba(0.12, 0.08, 0.05, 0.25); ctx.arc(x + 63, y + 65, 64, 0, 2 * math.pi); ctx.fill()
+    ctx.set_source_rgb(*CREAM); ctx.arc(x + 60, y + 60, 66, 0, 2 * math.pi); ctx.fill()
+    ctx.set_source_surface(LOGO, x, y); ctx.paint()
+    tag(ctx, '@Visual.Brainer', x + 300, y + 76, 40, seed=95)
+
 
 DUR = 16.0
 NF = int(DUR * FPS)
 SKY, SKY2 = (0.62, 0.82, 0.93), (0.84, 0.92, 0.95)
-GREY, GREY2 = (0.63, 0.65, 0.71), (0.52, 0.54, 0.61)
+GREY, GREY2 = (0.66, 0.68, 0.75), (0.55, 0.57, 0.65)
 WOOD, WOOD2 = (0.66, 0.45, 0.28), (0.55, 0.37, 0.22)
 CLOUD = (0.99, 0.98, 0.96)
 FX, FY, L, HANG = 540, 1020, 290, 190   # fulcrum, half-beam, string length
@@ -69,9 +86,9 @@ def elephant(ctx, x, y, s, seed=0):
 
 def mini(ctx, x, y, s):
     """tiny flat elephant for the pile (no texture — 100 of them)"""
-    ctx.set_source_rgba(0.12, 0.08, 0.05, 0.25)
-    ctx.save(); ctx.translate(x + 2, y - 70 * s + 3); ctx.scale(120 * s, 78 * s); ctx.arc(0, 0, 1, 0, 2 * math.pi); ctx.restore(); ctx.fill()
-    ctx.set_source_rgb(*GREY)
+    ctx.set_source_rgba(1, 1, 1, 0.9)
+    ctx.save(); ctx.translate(x, y - 70 * s); ctx.scale(128 * s, 82 * s); ctx.arc(0, 0, 1, 0, 2 * math.pi); ctx.restore(); ctx.fill()
+    ctx.set_source_rgb(0.72, 0.74, 0.81)
     ctx.save(); ctx.translate(x, y - 70 * s); ctx.scale(118 * s, 74 * s); ctx.arc(0, 0, 1, 0, 2 * math.pi); ctx.restore(); ctx.fill()
     ctx.arc(x - 105 * s, y - 115 * s, 55 * s, 0, 2 * math.pi); ctx.fill()
     ctx.rectangle(x - 170 * s, y - 115 * s, 30 * s, 95 * s); ctx.fill()
@@ -157,7 +174,8 @@ def draw(ctx, fi):
     banner(ctx, "CLOUD OR ELEPHANT?", 380, 78, a=window(ts, -1, T_ADD1 - 0.4) + fade_in(ts, 15.2), seed=1)
     banner(ctx, "100 ELEPHANTS.", 380, 96, col=(0.80, 0.32, 0.20), a=window(ts, T_ADD1 - 0.1, T_UP), seed=2)
     banner(ctx, "WHY DOESN'T IT FALL?", 380, 74, a=window(ts, T_UP + 0.2, T_RET), seed=3)
-    vignette(ctx, 0.25)
+    brand(ctx)
+    vignette(ctx, 0.2)
 
 
 def window(t, t0, t1, d=0.25):

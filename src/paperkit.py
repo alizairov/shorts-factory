@@ -45,11 +45,14 @@ def tag(ctx, txt, x, y, size, col=INK, bg=CREAM, seed=0, a=1.0):
     ctx.pop_group_to_source(); ctx.paint_with_alpha(min(1, a))
 
 
+BG_TEX_A = 1.0
+
+
 def textured_bg(ctx, top, bot):
     g = cairo.LinearGradient(0, 0, 0, H)
     g.add_color_stop_rgb(0, *top); g.add_color_stop_rgb(1, *bot)
     ctx.set_source(g); ctx.paint()
-    ctx.save(); ctx.set_operator(cairo.OPERATOR_MULTIPLY); ctx.set_source_surface(TEX, 0, 0); ctx.paint(); ctx.restore()
+    ctx.save(); ctx.set_operator(cairo.OPERATOR_MULTIPLY); ctx.set_source_surface(TEX, 0, 0); ctx.paint_with_alpha(BG_TEX_A); ctx.restore()
 
 
 def vignette(ctx, a=0.32):
