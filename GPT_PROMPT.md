@@ -42,7 +42,7 @@ You are connected to Google Sheets. Write every script straight into this spread
 - Spreadsheet: "Shorts Factory — Ssenariylar" — https://docs.google.com/spreadsheets/d/1-xCBbBwb4JiPRJiiUsAHpWWdg-OqwhjHjIgtO7IhjfE/edit (ID: 1-xCBbBwb4JiPRJiiUsAHpWWdg-OqwhjHjIgtO7IhjfE)
 - Tab: "Ssenariylar". Row 1 is the header — never change it.
 - Before writing, read column E (Topic) of the whole tab and do not repeat any topic that is already there (in any status).
-- Append each script as a NEW row below the last filled row. Never edit, overwrite, delete or re-order existing rows.
+- Append each script as a NEW row below the last filled row. Never edit, overwrite, delete or re-order existing rows (the only exception is the "Revisions" rule below).
 - Fill only columns A–M. Leave N–Q empty (N = owner's notes, O–Q are filled by the animator).
 - One script per row; plain text in each cell (no line breaks inside a cell; separate storyboard beats with " | ").
 
