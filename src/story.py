@@ -91,3 +91,17 @@ def riser(d=1.5, amp=0.08):
     t = np.arange(int(SR * d)) / SR
     f = 200 + 900 * (t / d) ** 2
     return np.sin(2 * np.pi * np.cumsum(f) / SR) * (t / d) * amp
+
+
+def pill(ctx, txt, y, size, col=(1, 1, 1), alpha=1.0, bgc=(0.06, 0.03, 0.14), bga=0.78):
+    """short neon text on a dark rounded card (top reading zone)"""
+    if alpha <= 0.01: return
+    ctx.select_font_face(FONT, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL); ctx.set_font_size(size)
+    w = ctx.text_extents(txt).x_advance
+    pad = size * 0.45
+    card(ctx, W / 2 - w / 2 - pad, y - size * 0.98, w + 2 * pad, size * 1.38, r=size * 0.3, rgba=(*bgc, bga * alpha))
+    label(ctx, txt, W / 2, y, size, col=col, alpha=alpha, shadow=0)
+
+
+def stop12(t):
+    return math.floor(t * 12) / 12

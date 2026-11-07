@@ -74,6 +74,7 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 
 - Paper 1: octopus — 3 hearts, blue blood, one heart stops when swimming
 - Paper 2–4: Saturn floats in a giant tank · is it a berry? (banana yes, strawberry no) · wombats poop cubes
+- Sheet S-001–S-003: leaf-gap crescent Suns in an eclipse · cashew grows under the cashew apple · 90% of an iceberg is underwater
 - Shared helpers for paper videos: `src/paperkit.py` (banner, tag, stop-motion time, ASMR sounds).
 
 ## Idea backlog
