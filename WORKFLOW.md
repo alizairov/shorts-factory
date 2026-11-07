@@ -16,6 +16,10 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 - ASMR sound: soft ambience, music-box plucks, gentle paper/bubble/heartbeat sounds — no booms.
 - Story: question banner on frame 1 → reveal by ~3 s → 2–3 extra "and…" beats → short closing line ("NATURE IS WEIRD." / "follow for more paper facts").
 
+## Text rules (from Ali, 2026-11-07)
+- Much LESS text: max ~3–5 words per banner, at most 1–2 banners on screen, each readable for ≥2 s. Let the picture tell the story.
+- Place text in the comfortable reading zone: top-centre, y ≈ 230–650 px. Never put important text in the bottom ~25% (YouTube title/buttons cover it) or near the right edge (like/comment buttons).
+
 ## Lessons from analytics
 - "What π actually is" (first 6.5 h): 909 views, 92.8% from Shorts feed, avg view duration 0:16 of 0:18, but only 35.2% "stayed to watch" (64.8% swiped away). People who stay watch almost to the end; the FIRST 1–2 SECONDS lose most viewers.
 - Hook rules: motion on frame 1 (no static intro, no fade-in); the question/hook text is on screen from frame 1; the main action starts within 0.5 s; keep 12–20 s; end in a way that loops back to the start.
