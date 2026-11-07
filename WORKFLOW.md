@@ -60,6 +60,8 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 - Pulled (unscheduled, don't reuse): ball grows every bounce · golden angle sunflower · 1/2+1/4+… · cardioid · Monty Hall · pink vs lime battle
 
 - Paper 1: octopus — 3 hearts, blue blood, one heart stops when swimming
+- Paper 2–4: Saturn floats in a giant tank · is it a berry? (banana yes, strawberry no) · wombats poop cubes
+- Shared helpers for paper videos: `src/paperkit.py` (banner, tag, stop-motion time, ASMR sounds).
 
 ## Idea backlog
 Fun-fact ideas (verify each before using): octopus has 3 hearts & blue blood · your body's DNA stretched out (Earth–Sun trips) ·
