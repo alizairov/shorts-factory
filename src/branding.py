@@ -81,7 +81,7 @@ def banner(path_out):
     for (x, y, r) in [(620, 560, 16), (660, 600, 10), (1990, 600, 14), (2030, 660, 9), (1960, 545, 12)]:
         ctx.set_source_rgba(1, 1, 1, 0.75); ctx.set_line_width(4); ctx.arc(x, y, r, 0, 2 * math.pi); ctx.stroke()
     # mascot on the left inside the safe area
-    octo_head(ctx, 770, 715, 0.5, seed=300)
+    octo_head(ctx, 700, 715, 0.5, seed=300)
     # little fact props on the right: Saturn, banana, cube
     sx, sy, r = 1880, 720, 70
     ctx.save(); ctx.translate(sx, sy); ctx.scale(1, 0.3); ctx.set_source_rgb(0.98, 0.88, 0.65); ctx.set_line_width(r * 0.28); ctx.arc(0, 0, r * 1.75, math.pi, 2 * math.pi); ctx.stroke(); ctx.restore()
@@ -93,13 +93,14 @@ def banner(path_out):
         w = ctx.text_extents(txt).x_advance; pad = size * 0.4
         paper(ctx, rect_pts(x - w / 2 - pad, y - size * 0.95, w + 2 * pad, size * 1.32), bgc, seed=seed, shadow=(6, 9), rough=2.2)
         label(ctx, txt, x, y, size, col=col, shadow=0)
-    strip("WEIRD FACTS,", 1300, 680, 92, INK, CREAM, 500)
-    strip("MADE OF PAPER", 1300, 810, 92, (0.83, 0.36, 0.46), CREAM, 501)
+    strip("WEIRD FACTS", 1300, 700, 120, INK, CREAM, 500)
+    strip("space · animals · history · science", 1300, 815, 50, (0.83, 0.36, 0.46), CREAM, 501)
     strip("new short every day", 1300, 905, 40, INK, (0.95, 0.88, 0.70), 502)
     surf.write_to_png(path_out)
 
 
 if __name__ == "__main__":
-    logo("channel_logo.png")
+    import sys
+    if len(sys.argv) < 2: logo("channel_logo.png")
     banner("channel_banner.png")
     print("ok")

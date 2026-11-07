@@ -10,6 +10,19 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 - Use `src/story.py` helpers (rich text highlights, progress bar, ding/whoosh/boom sounds). See `src/f1_earthday.py` … `src/f6_history.py` as reference quality.
 - Every frame must be readable on a phone: big text, high contrast, one idea on screen at a time; content visible from the very first frame.
 
+## Script pipeline (Google Sheet) — from 2026-11-07
+- Scripts live in the Google Sheet "Shorts Factory — Ssenariylar" (file id `1-xCBbBwb4JiPRJiiUsAHpWWdg-OqwhjHjIgtO7IhjfE`), tab "Ssenariylar".
+- ChatGPT writes scripts with the prompt in `GPT_PROMPT.md` (also in the sheet's "GPT prompt" tab); Ali reviews them and sets Status.
+- Columns: A ID · B Status · C Style · D Category · E Topic · F Hook text · G Storyboard · H Closing text · I Length · J Fact & sources · K YouTube title · L Description · M Tags · N Ali's notes · O Video file · P Publish date · Q YouTube link.
+- ONLY animate rows with Status = Approved. Follow the storyboard, but re-verify the fact first; if it's wrong, don't animate — write the problem into column N and set Status = Needs changes.
+- After rendering + scheduling: set B = Scheduled, fill O (repo path), P (date). After it's live, set B = Published and Q = link. Give each new row an ID (S-001, S-002 …).
+- Writing to the sheet needs the Google Sheets connector (`get_values`, `update_values`). Without it, read with Google Drive `read_file_content` (sample only — long cells are cut) and tell Ali which rows you produced.
+- If there are fewer than 7 Approved scripts, produce what's there and fill the rest of the week from the idea backlog.
+
+## Two visual styles (both are channel styles)
+- **Fact story** — bold flat neon-on-dark animations (`src/story.py`, see `src/f1_earthday.py` … `src/f6_history.py`).
+- **Paper cutout** — see below.
+
 ## Visual style: PAPER CUTOUT (from 2026-11-07, Ali's choice)
 - All new videos use the paper-cutout look: `src/paper.py` (`paper()` torn-edge shapes with paper texture + layered drop shadows, `pin()` brass fasteners, jointed limbs) — see `src/p1_octopus.py` as the reference video.
 - Stop-motion feel: animate on `ts = floor(t*12)/12`. Warm, textured palettes; text on torn paper strips (`banner()` in p1_octopus.py).
