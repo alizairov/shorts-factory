@@ -14,7 +14,10 @@ SHIRT, PANTS = (0.36, 0.80, 0.62), (0.28, 0.24, 0.52)
 INK = (0.17, 0.08, 0.22)
 PINKS, PINKD = (1.0, 0.42, 0.62), (0.86, 0.22, 0.45)
 LIME, CYAN, YEL = (0.80, 0.95, 0.30), (0.45, 0.90, 1.0), (1.0, 0.85, 0.25)
-STOM = (575, 1185)   # stomach position in world space
+STOM = (575, 1185)   # organ position in world space
+ORGAN = None          # optional callable(ctx, x, y, t, xray) replacing the stomach
+GLOW = True
+T_SMILE, LOOK = 13.3, (3.0, 12.8)
 
 
 def cl(u): return max(0.0, min(1.0, u))
@@ -76,7 +79,7 @@ def stomach_shape(ctx, x, y, s):
 def character(ctx, t, xray):
     bob = 6 * math.sin(t * 2.2)
     cx, hy = 540, 640 + bob
-    surprised = cl(t / 0.3) * (1 - ease((t - 13.2) / 0.6))
+    surprised = cl(t / 0.3) * (1 - ease((t - T_SMILE + 0.1) / 0.6))
     # legs + body
     ctx.set_source_rgb(*PANTS)
     for dx in (-85, 85):
@@ -88,15 +91,16 @@ def character(ctx, t, xray):
     ctx.pop_group_to_source(); ctx.paint_with_alpha(1 - 0.72 * xray)
     # glowing stomach (always under the shirt, revealed by x-ray)
     gx, gy = STOM
-    g = cairo.RadialGradient(gx, gy, 10, gx, gy, 330)
+    g = cairo.RadialGradient(gx, gy, 10, gx, gy, 330) if GLOW else None
     glow = 0.55 * cl(t / 0.4) + 0.2 * math.sin(t * 4)
-    g.add_color_stop_rgba(0, 1, 1, 0.95, cl(glow + 0.2 * xray)); g.add_color_stop_rgba(1, 1, 1, 0.9, 0)
-    ctx.set_source(g); ell(ctx, gx, gy, 330, 330); ctx.fill()
-    if xray > 0.01:
+    if GLOW: g.add_color_stop_rgba(0, 1, 1, 0.95, cl(glow + 0.2 * xray)); g.add_color_stop_rgba(1, 1, 1, 0.9, 0)
+    if GLOW: ctx.set_source(g); ell(ctx, gx, gy, 330, 330); ctx.fill()
+    if ORGAN: ORGAN(ctx, gx, gy, t, xray)
+    elif xray > 0.01:
         ctx.set_line_cap(cairo.LINE_CAP_ROUND)
         for w, c, a in [(96, (1, 0.95, 0.85), 0.9), (70, PINKS, 1.0), (30, PINKD, 0.6)]:
             stomach_shape(ctx, gx, gy, 1.0); ctx.set_line_width(w); ctx.set_source_rgba(*c, a * xray); ctx.stroke()
-    for k in range(9):
+    for k in range(9 if GLOW else 0):
         ph = (t * 0.7 + k / 9) % 1
         ang = k * 2.4
         sparkle(ctx, gx + math.cos(ang) * (90 + 150 * ph), gy + math.sin(ang) * (90 + 150 * ph), 22 * (1 - ph), 0.9 * (1 - ph) * cl(t / 0.5))
@@ -110,7 +114,8 @@ def character(ctx, t, xray):
         ctx.set_source_rgb(*SHIRT); ctx.move_to(sx, sy); ctx.line_to(ex, ey); ctx.stroke()
         ctx.set_source_rgb(*SKIN); ctx.move_to(ex, ey); ctx.line_to(hx, hy2); ctx.stroke()
         ell(ctx, hx, hy2 - 10, 46, 46); ctx.fill()
-    # head
+    # head (fades out when the camera is inside the body)
+    ctx.push_group()
     ctx.set_source_rgb(*HAIR2); ell(ctx, cx, hy + 10, 225, 245); ctx.fill()
     ctx.set_source_rgb(*SKIN2); ell(ctx, cx - 180, hy + 30, 40, 52); ctx.fill(); ell(ctx, cx + 180, hy + 30, 40, 52); ctx.fill()
     ctx.set_source_rgb(*SKIN); ell(ctx, cx, hy + 20, 180, 200); ctx.fill()
@@ -119,7 +124,7 @@ def character(ctx, t, xray):
     ctx.curve_to(cx + 120, hy - 120, cx + 30, hy - 60, cx - 40, hy - 150); ctx.curve_to(cx - 90, hy - 80, cx - 160, hy - 60, cx - 200, hy - 20); ctx.fill()
     ctx.set_source_rgb(*HAIR); ell(ctx, cx, hy - 250, 70, 62); ctx.fill()     # bun
     # eyes with blinks + look direction
-    look = 18 * ease(cl((t - 3.0) / 0.6)) * (1 - ease(cl((t - 12.8) / 0.6)))
+    look = 18 * ease(cl((t - LOOK[0]) / 0.6)) * (1 - ease(cl((t - LOOK[1]) / 0.6)))
     op = blink(t)
     brow = 22 * surprised + 6
     for sd in (-1, 1):
@@ -133,12 +138,13 @@ def character(ctx, t, xray):
     # cheeks
     ctx.set_source_rgba(1, 0.45, 0.45, 0.35); ell(ctx, cx - 120, hy + 100, 34, 20); ctx.fill(); ell(ctx, cx + 120, hy + 100, 34, 20); ctx.fill()
     # mouth: "o" when surprised, smile at the end
-    smile = ease(cl((t - 13.3) / 0.5))
+    smile = ease(cl((t - T_SMILE) / 0.5))
     ctx.set_source_rgb(0.62, 0.12, 0.22)
     if smile < 0.5:
         ell(ctx, cx, hy + 120, 30 * (0.6 + 0.4 * surprised), 38 * (0.5 + 0.5 * surprised)); ctx.fill()
     else:
         ctx.set_line_width(14); ctx.arc(cx, hy + 90, 55, 0.2 * math.pi, 0.8 * math.pi); ctx.stroke()
+    ctx.pop_group_to_source(); ctx.paint_with_alpha(1 - 0.9 * xray)
 
 
 # ---------------- magnifier: lining cells conveyor ----------------
