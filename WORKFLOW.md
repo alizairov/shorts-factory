@@ -10,6 +10,12 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 - Use `src/story.py` helpers (rich text highlights, progress bar, ding/whoosh/boom sounds). See `src/f1_earthday.py` … `src/f6_history.py` as reference quality.
 - Every frame must be readable on a phone: big text, high contrast, one idea on screen at a time; content visible from the very first frame.
 
+## Visual style: PAPER CUTOUT (from 2026-11-07, Ali's choice)
+- All new videos use the paper-cutout look: `src/paper.py` (`paper()` torn-edge shapes with paper texture + layered drop shadows, `pin()` brass fasteners, jointed limbs) — see `src/p1_octopus.py` as the reference video.
+- Stop-motion feel: animate on `ts = floor(t*12)/12`. Warm, textured palettes; text on torn paper strips (`banner()` in p1_octopus.py).
+- ASMR sound: soft ambience, music-box plucks, gentle paper/bubble/heartbeat sounds — no booms.
+- Story: question banner on frame 1 → reveal by ~3 s → 2–3 extra "and…" beats → short closing line ("NATURE IS WEIRD." / "follow for more paper facts").
+
 ## Lessons from analytics
 - "What π actually is" (first 6.5 h): 909 views, 92.8% from Shorts feed, avg view duration 0:16 of 0:18, but only 35.2% "stayed to watch" (64.8% swiped away). People who stay watch almost to the end; the FIRST 1–2 SECONDS lose most viewers.
 - Hook rules: motion on frame 1 (no static intro, no fade-in); the question/hook text is on screen from frame 1; the main action starts within 0.5 s; keep 12–20 s; end in a way that loops back to the start.
@@ -48,6 +54,8 @@ Goal: a monetizable English YouTube Shorts channel of code-animated videos. One 
 
 - Facts 1: Earth history in 24h · atoms in a glass vs oceans · sharks older than trees · light travel times (you never see the present) · Cleopatra/mammoths/Oxford timelines · Venus day longer than year
 - Pulled (unscheduled, don't reuse): ball grows every bounce · golden angle sunflower · 1/2+1/4+… · cardioid · Monty Hall · pink vs lime battle
+
+- Paper 1: octopus — 3 hearts, blue blood, one heart stops when swimming
 
 ## Idea backlog
 Fun-fact ideas (verify each before using): octopus has 3 hearts & blue blood · your body's DNA stretched out (Earth–Sun trips) ·
