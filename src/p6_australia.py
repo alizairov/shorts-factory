@@ -52,34 +52,39 @@ def draw(ctx, fi):
     for k in range(60):
         x, y = rnd.uniform(0, W), rnd.uniform(0, H)
         ctx.set_source_rgba(*CREAM, 0.35 + 0.35 * math.sin(ts * 2 + k)); ctx.arc(x, y, rnd.uniform(2, 4.5), 0, 2 * math.pi); ctx.fill()
-    # zoom: side-by-side (small) -> overlap (large) -> back
+    # side-by-side (small) -> stacked: Moon above Australia, same scale, edge guides
     z = ease(cl((ts - 3.0) / 1.2)) * (1 - ease(cl((ts - 12.6) / 1.4)))
-    p = 0.115 + (0.215 - 0.115) * z
-    cy = 1080
-    ax = 750 + (540 - 750) * z
-    mx0 = 225 + 6 * math.sin(ts * 1.6)
-    mx = mx0 + (540 - mx0) * z
-    my = cy - 20 * (1 - z) + 6 * math.cos(ts * 1.3)
-    lift = math.sin(math.pi * z) * 60 if 3.0 < ts < 4.2 else 0
-    # Pluto beat: moon slides aside, Pluto drops onto Australia
+    p = 0.115 + (0.155 - 0.115) * z
+    ax, ay = 750 + (540 - 750) * z, 1080 + (1330 - 1080) * z
+    mx = 225 + 6 * math.sin(ts * 1.6) * (1 - z) + (540 - 225) * z
+    my = 1060 + 6 * math.cos(ts * 1.3) * (1 - z) + (780 - 1060) * z
     pl = ease(cl((ts - 8.6) / 0.8)) * (1 - ease(cl((ts - 12.0) / 0.6)))
-    mx += pl * 950
-    paper(ctx, aus_pts(ax, cy, p, AUS), SAND, seed=3, shadow=(7, 10), rough=1.0)
-    paper(ctx, aus_pts(ax, cy, p, TAS), SAND2, seed=4, shadow=(4, 6), rough=0.6)
+    mx += pl * 800
+    paper(ctx, aus_pts(ax, ay, p, AUS), SAND, seed=3, shadow=(7, 10), rough=1.0)
+    paper(ctx, aus_pts(ax, ay, p, TAS), SAND2, seed=4, shadow=(4, 6), rough=0.6)
+    rm = R_MOON * p
     if pl > 0.01:
-        pd = 1 - ease(cl((ts - 9.2) / 0.5))
-        moon_pl = R_PLUTO * p
+        pd = 1 - ease(cl((ts - 9.2) / 0.5)); rp = R_PLUTO * p; py = 780 - pd * 900
         ctx.push_group()
-        paper(ctx, ellipse_pts(ax, cy - pd * 900, moon_pl, moon_pl, 40), PLUTO, seed=12, shadow=(6, 8))
-        paper(ctx, ellipse_pts(ax + 0.2 * moon_pl, cy - pd * 900 + 0.2 * moon_pl, 0.45 * moon_pl, 0.4 * moon_pl, 24), CREAM, seed=13, shadow=(2, 3), rough=0.8)
+        paper(ctx, ellipse_pts(540, py, rp, rp, 40), PLUTO, seed=12, shadow=(6, 8))
+        paper(ctx, ellipse_pts(540 + 0.2 * rp, py + 0.2 * rp, 0.45 * rp, 0.4 * rp, 24), CREAM, seed=13, shadow=(2, 3), rough=0.8)
         ctx.pop_group_to_source(); ctx.paint_with_alpha(min(1, pl * 2))
-    moon(ctx, mx, my - lift, R_MOON * p, 0.92 if z > 0.5 else 1.0, seed=8)
-    if z > 0.5:   # Australia's coastline peeking out under the Moon
-        path(ctx, aus_pts(ax, cy, p, AUS)); ctx.set_source_rgba(*INK, 0.55); ctx.set_line_width(4); ctx.set_dash([14, 10]); ctx.stroke(); ctx.set_dash([])
-    a = cl((ts - 4.6) / 0.3) * (1 - cl((ts - 8.5) / 0.3))
+    moon(ctx, mx, my, rm, 1.0, seed=8)
+    # guides from the Moon's (or Pluto's) edges down through Australia
+    g = cl((ts - 4.3) / 0.4) * (1 - cl((ts - 12.2) / 0.3))
+    if g > 0.01:
+        half = rm + (R_PLUTO * p - rm) * cl((ts - 9.4) / 0.5)
+        ctx.set_source_rgba(*CREAM, 0.8 * g); ctx.set_line_width(4); ctx.set_dash([16, 12])
+        for sx in (-1, 1):
+            ctx.move_to(540 + sx * half, 780); ctx.line_to(540 + sx * half, 1640); ctx.stroke()
+        ctx.set_dash([])
+        for sx in (-1, 1):   # highlight the part of Australia that sticks out
+            ctx.set_source_rgba(1, 0.95, 0.6, 0.0)
+    a1 = cl((ts - 4.8) / 0.3) * (1 - cl((ts - 8.5) / 0.3))
+    a2 = cl((ts - 5.3) / 0.3) * (1 - cl((ts - 8.5) / 0.3))
+    arrow(ctx, 540 - rm, 540 + rm, 780 - 20, "3,474 KM", a1, 21)
     w_aus = 4010 * p
-    arrow(ctx, ax - w_aus / 2, ax + w_aus / 2, cy - 430, "4,000 KM", a, 20)
-    arrow(ctx, mx - R_MOON * p, mx + R_MOON * p, cy + 440, "3,474 KM", cl((ts - 5.3) / 0.3) * (1 - cl((ts - 8.5) / 0.3)), 21)
+    arrow(ctx, 540 - w_aus / 2, 540 + w_aus / 2, 1290, "4,000 KM", a2, 20)
     banner(ctx, "MOON OR AUSTRALIA?", 380, 80, a=window(ts, -1, 5.7) + fade_in(ts, 14.2), seed=1)
     banner(ctx, "AUSTRALIA WINS.", 380, 96, col=(0.80, 0.36, 0.16), a=window(ts, 5.9, 8.8), seed=2)
     banner(ctx, "PLUTO? EVEN SMALLER.", 380, 76, a=window(ts, 9.3, 12.2), seed=3)
