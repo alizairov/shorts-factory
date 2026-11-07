@@ -1,0 +1,3 @@
+Engine: Lemo-Opuscar Chalkboard style engine (chalk.js, r2d.js, hand.js, stage.js) — MIT, github.com/lemomo-ai/lemo-opuscar
+Font: Hershey Futura Light single-line font (public domain), converted to SVG font.
+Sound: synthesized in audio.py (no third-party recordings).
