@@ -87,3 +87,6 @@ how fast Earth really moves (spin + orbit + galaxy) · rice on a chessboard (exp
 
 ## No characters (Ali, 2026-11-07)
 - Do NOT use a hero/character in videos. For body topics use a faceless body silhouette only.
+
+## Do not use Lemo-Opuscar styles (Ali, 2026-11-08)
+- Chalkboard and Impasto tests were rejected. Stay with our own styles: flat-vector explainer (heart/stomach), neon Fact story, Paper cutout.
