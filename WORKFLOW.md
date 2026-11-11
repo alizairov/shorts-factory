@@ -90,3 +90,8 @@ how fast Earth really moves (spin + orbit + galaxy) · rice on a chessboard (exp
 
 ## Do not use Lemo-Opuscar styles (Ali, 2026-11-08)
 - Chalkboard and Impasto tests were rejected. Stay with our own styles: flat-vector explainer (heart/stomach), neon Fact story, Paper cutout.
+
+## Analytics lessons + Glow 3D style (2026-11-11)
+- Engaged-view share: Australia 41%, bone 38%, lightning 35% (avg watch 0:32 on a 15 s video = rewatches), heart 24% (worst: character + slow hook).
+- What works: two concrete objects compared on frame 1, a guess question, a visible physical process, a clean loop.
+- New style "Glow 3D" (src/glow/fx.py): shaded luminous objects, bloom, physics-driven motion, no characters.
